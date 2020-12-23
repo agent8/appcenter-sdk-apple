@@ -180,6 +180,7 @@
 		350B29F41F1E6F1D009B91CF /* MSACWrapperExceptionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 350B29F31F1E6F1D009B91CF /* MSACWrapperExceptionTests.m */; };
 		352B1D6F1F27C36300684A7F /* MSACWrapperCrashesHelperTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 352B1D6E1F27C36300684A7F /* MSACWrapperCrashesHelperTests.mm */; };
 		35EF18E01DDBCF6C00731CA8 /* MSACWrapperExceptionManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EF18DF1DDBCF6C00731CA8 /* MSACWrapperExceptionManagerTests.m */; };
+		3B56E71D259326E500A76EF4 /* libCrashReporter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C24C9CEF2472B3C30072C35D /* libCrashReporter.a */; };
 		5949328B0C188C5B6624AAC2 /* MSACCrashesUtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 59493B275715F01438B2E6FD /* MSACCrashesUtilTests.m */; };
 		6E7D5C801D3EAEB5009EC9AC /* MSACBinaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7D5C7F1D3EAEB5009EC9AC /* MSACBinaryTests.m */; };
 		6E7D5C841D3EC0F7009EC9AC /* MSACThreadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7D5C831D3EC0F7009EC9AC /* MSACThreadTests.m */; };
@@ -229,7 +230,6 @@
 		C2392F6D24642D9B00425640 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2392F5224642CEA00425640 /* OCMock.framework */; };
 		C2392F7024642DAD00425640 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2392F5C24642CEA00425640 /* OCMock.framework */; };
 		C24C9D1D2472B49E0072C35D /* libCrashReporter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C24C9CF32472B3C30072C35D /* libCrashReporter.a */; };
-		C24C9D1E2472B4AA0072C35D /* libCrashReporter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C24C9CEF2472B3C30072C35D /* libCrashReporter.a */; };
 		C24C9D1F2472B4B20072C35D /* libCrashReporter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C24C9CF92472B3C30072C35D /* libCrashReporter.a */; };
 		C291A048237955AA0051A846 /* MSACApplicationForwarderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C291A047237955AA0051A846 /* MSACApplicationForwarderTests.m */; };
 		C291A049237955AA0051A846 /* MSACApplicationForwarderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C291A047237955AA0051A846 /* MSACApplicationForwarderTests.m */; };
@@ -987,7 +987,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C24C9D1E2472B4AA0072C35D /* libCrashReporter.a in Frameworks */,
+				3B56E71D259326E500A76EF4 /* libCrashReporter.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
