@@ -60,6 +60,8 @@ static const long kMSACMinUpperSizeLimitInBytes = 24 * 1024;
 
 @synthesize logUrl = _logUrl;
 
+static NSString *gCrashPath = nil;
+
 + (instancetype)sharedInstance {
   dispatch_once(&onceToken, ^{
     if (sharedInstance == nil) {
@@ -251,6 +253,16 @@ static const long kMSACMinUpperSizeLimitInBytes = 24 * 1024;
 
 + (void)setCountryCode:(NSString *)countryCode {
   [[MSACDeviceTracker sharedInstance] setCountryCode:countryCode];
+}
+
++ (void)setCrashPath:(NSString *)crashPath {
+    @synchronized(self) {
+        gCrashPath = [[NSString alloc] initWithString:crashPath];
+    }
+}
+
++ (NSString *)crashPath {
+  return gCrashPath;
 }
 
 #pragma mark - private

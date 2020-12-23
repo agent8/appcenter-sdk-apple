@@ -126,6 +126,13 @@ NS_SWIFT_NAME(AppCenter)
 #endif
 
 /**
+ * Set crash file path in sandbox.
+ *
+ */
++ (void)setCrashPath:(NSString *)crashPath;
++ (NSString *)crashPath;
+
+/**
  * Check whether the application delegate forwarder is enabled or not.
  *
  * @discussion The application delegate forwarder forwards messages that target your application delegate methods via swizzling to the SDK.

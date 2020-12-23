@@ -705,7 +705,9 @@ __attribute__((noreturn)) static void uncaught_cxx_exception_handler(const MSACC
   PLCrashReporterConfig *config = [[PLCrashReporterConfig alloc] initWithSignalHandlerType:signalHandlerType
                                                                      symbolicationStrategy:symbolicationStrategy
                                                     shouldRegisterUncaughtExceptionHandler:enableUncaughtExceptionHandler];
-  self.plCrashReporter = [[PLCrashReporter alloc] initWithConfiguration:config];
+  NSString *crashesDir = [MSACAppCenter crashPath];
+  self.plCrashReporter = [[PLCrashReporter alloc] initWithConfiguration:config basePath:crashesDir];
+
 
   /*
    * The actual signal and mach handlers are only registered when invoking `enableCrashReporterAndReturnError`, so it is safe enough to only
