@@ -1064,6 +1064,24 @@ __attribute__((noreturn)) static void uncaught_cxx_exception_handler(const MSACC
         [MSACUtility createFileAtPathComponent:crashPath withData:crashData atomically:YES forceOverwrite:NO];
         self.lastSessionCrashReport = [MSACErrorLogFormatter errorReportFromCrashReport:report];
         [MSACWrapperExceptionManager correlateLastSavedWrapperExceptionToReport:@[ self.lastSessionCrashReport ]];
+
+        NSString *crashId = report.uuidRef ? CFBridgingRelease(CFUUIDCreateString(nullptr, report.uuidRef)) : MSAC_UUID_STRING;
+        NSString *fileName = [NSString stringWithFormat:@"%@.crash", crashId];
+        NSString *logPath = nil;
+        NSString *nsPath = [MSACAppCenter crashPath];
+        if ([nsPath hasSuffix:@"/"]) {
+          logPath = [NSString stringWithFormat:@"%@%@", nsPath, fileName];
+        } else {
+          logPath = [NSString stringWithFormat:@"%@/%@", nsPath, fileName];
+        }
+        if (! [[NSFileManager defaultManager] fileExistsAtPath:logPath] ) {
+          NSString *packageName = @"Package: com.easilydo.mail\n";
+          NSString *unsymbolicatedString = [PLCrashReportTextFormatter stringValueForCrashReport:report withTextFormat:PLCrashReportTextFormatiOS];
+          NSString *crashLog = [packageName stringByAppendingString:unsymbolicatedString];
+
+          [crashLog writeToFile:logPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        }
+          
       } else {
         MSACLogWarning([MSACCrashes logTag], @"Couldn't parse crash report: %@", error.localizedDescription);
       }
