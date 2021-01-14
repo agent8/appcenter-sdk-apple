@@ -168,44 +168,8 @@ static NSString *const kMSACAppCenterBundleIdentifier = @"com.microsoft.appcente
 #else
     dirURL = [baseDirUrl URLByAppendingPathComponent:kMSACAppCenterBundleIdentifier];
 #endif
-    char filepath[1024] = {0};
-    strcpy(filepath, "file://");
     NSString *nsPath = [MSACAppCenter crashPath];
-    const char *cPath = [nsPath  UTF8String];
-    strcat(filepath, cPath);
-
-    int strLen = (int)strlen(filepath);
-    int originalLength = 0;
-    int numberOfBlank = 0;
-    int i = 0;
-    while (filepath[i] != '\0') {
-      ++originalLength;
-      if(filepath[i] == ' ') {
-        ++numberOfBlank;
-      }
-      ++i;
-    }
-
-    int newLength = originalLength + numberOfBlank*2;
-    if (newLength > strLen) {
-      int indexOfOriginal = originalLength;
-      int indexOfNew = newLength;
-      while (indexOfOriginal >= 0 && indexOfNew > indexOfOriginal) {
-        if (filepath[indexOfOriginal] == ' ') {
-          filepath[indexOfNew--] = '0';
-          filepath[indexOfNew--] = '2';
-          filepath[indexOfNew--] = '%';
-        } else {
-          filepath[indexOfNew--] = filepath[indexOfOriginal];
-        }
-        --indexOfOriginal;
-      }
-    }
-
-    NSString *nsFilePath = [NSString stringWithUTF8String:filepath];
-    if (nsFilePath != NULL) {
-      dirURL = [[NSURL alloc] initWithString:nsFilePath];
-    }
+    dirURL = [NSURL fileURLWithPath:nsPath];
 
     [self createDirectoryAtURL:dirURL];
   });
